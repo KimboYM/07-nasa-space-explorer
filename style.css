@@ -1,3 +1,14 @@
+@import url('https://fonts.googleapis.com/css2?family=Barlow:wght@400;700&display=swap');
+/* NASA Brand Colors */
+:root {
+  --nasa-blue: #0b3d91;
+  --nasa-red: #fc3d21;
+  --nasa-white: #ffffff;
+  --nasa-gray: #e5e5e5;
+  --nasa-dark: #212121;
+  --nasa-gray-light: #aeb0b5;
+}
+
 /* Global reset & box sizing */
 * {
   box-sizing: border-box;
@@ -7,15 +18,22 @@
 
 /* Base page styles */
 body {
-  font-family: Arial, sans-serif;
-  background-color: #f1f1f1;
+  font-family: 'Barlow', Arial, sans-serif;
+  background-color: var(--nasa-gray-light);
+  color: var(--nasa-dark);
   padding: 20px;
+  background-image: none;
 }
 
 /* Centered container */
 .container {
   max-width: 1200px;
   margin: 0 auto;
+  background: var(--nasa-gray-light);
+  border-radius: 12px;
+  box-shadow: 0 4px 24px rgba(11,61,145,0.08);
+  padding-bottom: 30px;
+  border: 4px solid var(--nasa-blue);
 }
 
 /* Header */
@@ -23,15 +41,19 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding-top: 20px;
-  padding-bottom: 20px;
-  margin-bottom: 20px;
+  padding-top: 24px;
+  padding-bottom: 24px;
+  margin-bottom: 24px;
+  background: var(--nasa-blue);
+  border-radius: 12px 12px 0 0;
 }
 
 h1 {
-  font-family: Verdana, sans-serif;
-  font-weight: bold;
-  color: #212121;
+  font-family: 'Barlow', Verdana, Arial, sans-serif;
+  font-weight: 700;
+  color: var(--nasa-white);
+  letter-spacing: 2px;
+  margin-left: 10px;
 }
 
 /* Logo */
@@ -53,9 +75,8 @@ h1 {
 /* Inputs and buttons */
 input[type="date"],
 button {
-  font-family: Arial, sans-serif;
-  font-weight: normal;
-  color: #666;
+  font-family: 'Barlow', Arial, sans-serif;
+  color: var(--nasa-dark);
   padding: 10px 15px;
   border: 1px solid #ddd;
   border-radius: 4px;
@@ -66,12 +87,14 @@ button {
 
 /* Button specific */
 button {
-  background-color: #d3d3d3;
-  color: black;
-  cursor: pointer;
+  background-color: var(--nasa-red);
+  color: var(--nasa-white);
+  font-weight: bold;
+  border: none;
+  transition: background 0.2s;
 }
 button:hover {
-  background-color: #bfbfbf;
+  background-color: #b92d1f;
 }
 
 /* Stack horizontally on wider screens */
@@ -91,23 +114,35 @@ button:hover {
 .gallery {
   display: flex;
   flex-wrap: wrap;
-  gap: 20px;
-  padding: 20px;
+  gap: 24px;
+  padding: 24px;
   justify-content: center;
+  background: #061f4a;
+  border-radius: 12px;
+  border: 3px solid var(--nasa-blue);
+  box-shadow: 0 4px 24px rgba(11,61,145,0.10);
+  min-height: 120px;
+  margin-bottom: 24px;
+  font-family: 'Barlow', Arial, sans-serif;
+  color: #fff;
 }
 
-/* Gallery items */
-.gallery-item {
-  flex: 1 1 100%;  /* full width by default */
-  min-width: 280px;
-  max-width: 500px;
-  background: white;
-  padding: 10px;
-  border-radius: 8px;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
+/* Gallery text */
+.gallery-text {
+  width: 100%;
+  text-align: center;
+  color: #fff;
+  font-family: 'Barlow', Arial, sans-serif;
+  font-weight: 700;
+  font-size: 1.25rem;
+  letter-spacing: 1px;
+  margin: 24px 0 0 0;
+}
+
+/* Remove legacy gallery-item styles that may cause hidden text or backgrounds */
+.gallery-item,
+.gallery-item img {
+  all: unset;
 }
 
 /* Three columns on wider screens */
@@ -117,28 +152,78 @@ button:hover {
   }
 }
 
-.gallery-item img {
-  width: 100%;
-  height: 200px;
-  object-fit: cover;
-  border-radius: 4px;
+.card.apod-image {
+  border: 2px solid var(--nasa-blue);
+  box-shadow: 0 2px 12px rgba(11,61,145,0.10);
+  border-radius: 12px;
+  background: var(--nasa-white);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.card.apod-image:hover {
+  transform: translateY(-6px) scale(1.03);
+  box-shadow: 0 8px 24px rgba(252,61,33,0.12);
+  border-color: var(--nasa-red);
+}
+.card-img-top {
+  border-radius: 12px 12px 0 0;
+  background: var(--nasa-blue);
 }
 
-.gallery-item p {
-  margin-top: 10px;
-  padding: 5px;
-  font-size: 14px;
-}
 
-/* Placeholder content */
-.placeholder {
-  flex: 1 1 100%;
+.apod-popup {
+  background: var(--nasa-gray-light);
+  border: 3px solid var(--nasa-blue);
+  border-radius: 12px;
+  box-shadow: 0 4px 24px rgba(11,61,145,0.12);
+  font-family: 'Barlow', Arial, sans-serif;
+  font-weight: 700;
+  color: var(--nasa-dark);
+  padding: 24px;
+  max-width: 500px;
+  width: 90%;
+  max-height: 90vh;
+  overflow-y: auto;
   text-align: center;
-  padding: 40px;
-  color: #666;
+  position: relative;
 }
 
-.placeholder-icon {
-  font-size: 48px;
-  margin-bottom: 20px;
+.apod-popup h2 {
+  color: var(--nasa-blue);
+  font-size: 2rem;
+  margin-bottom: 10px;
+  font-family: 'Barlow', Arial, sans-serif;
+  font-weight: 700;
+}
+
+.apod-popup p {
+  color: var(--nasa-dark);
+  font-size: 1.1rem;
+  font-family: 'Barlow', Arial, sans-serif;
+  font-weight: 500;
+}
+
+.apod-popup img {
+  border-radius: 8px;
+  margin: 16px 0;
+  max-width: 100%;
+}
+
+.apod-popup button {
+  background: var(--nasa-red);
+  color: var(--nasa-white);
+  font-family: 'Barlow', Arial, sans-serif;
+  font-weight: bold;
+  border: none;
+  border-radius: 5px;
+  padding: 7px 16px;
+  cursor: pointer;
+  position: sticky;
+  top: 10px;
+  right: 10px;
+  float: right;
+  margin-bottom: 10px;
+  transition: background 0.2s;
+}
+.apod-popup button:hover {
+  background: #b92d1f;
 }
